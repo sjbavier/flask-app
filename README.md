@@ -60,3 +60,13 @@ Can also be invoked within the application
 if __name__ = '__main__':
     <flask_instance>.run()
 ```
+
+### Debug Mode
+
+Set environment variable FLASK_DEBUG=1 and run
+
+```sh
+export FLASK_DEBUG=1
+export FLASK_APP=__init__.py
+flask run
+```
