@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/sjbavier/docker/cra-docker/flask-app/app/venv"
+set -gx VIRTUAL_ENV "/home/sjbavier/docker/cra-docker/flask-app/server/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
