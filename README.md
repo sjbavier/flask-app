@@ -70,3 +70,31 @@ export FLASK_DEBUG=1
 export FLASK_APP=__init__.py
 flask run
 ```
+
+## Database Operations
+
+### Using Flask-Migrate
+
+Initiate migrate:
+
+```sh
+flask db init
+```
+
+When changes are made to the models generate an automatic migration script.
+**Review: the generated migration script for inaccuracies ie: (name changes resulting in deletions)**
+
+```sh
+flask db migrate
+# add a comment
+flask db migrate -m "changes made: ..."
+```
+
+Once you've reviewed and accepted the migration script, apply it to the database (for a first migration, equivalent to db.create_all())
+**note: the command will fail if the tables already exist and is the first time running the command. Another option would be to run flask db stamp and mark the existing database as upgraded**:
+
+```sh
+flask db upgrade
+flask db downgrade
+```
+

@@ -6,8 +6,8 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.String(64), unique=True, index=True, nullable=False)
-    user_password = db.Column(db.String(64), nullable=False)
-    roles = db.Column(db.Enum, nullable=False)
+    user_password = db.Column(db.String(128), nullable=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     """
     the roles.id argument for ForeignKey should be interpreted as id values from roles table
