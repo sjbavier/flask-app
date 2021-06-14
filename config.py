@@ -36,7 +36,7 @@ conditionally loaded configurations
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://cra_user:xyz-replace-with-secret@localhost:3306/webmane'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'sersky.db')
 
 
 class TestingConfig(Config):

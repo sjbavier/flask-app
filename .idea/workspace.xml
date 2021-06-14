@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a1c0b6-08b1-43eb-b032-4832663abf0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/auth/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/bookmark.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/serksky.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sersky.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sersky.py" beforeDir="false" afterPath="$PROJECT_DIR$/sersky.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +37,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DatabaseDriversLRU" value="mysql&#10;sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -74,6 +81,12 @@
       <workItem from="1621097386501" duration="599000" />
       <workItem from="1621114669918" duration="74000" />
       <workItem from="1621115411214" duration="10248000" />
+      <workItem from="1622388388470" duration="941000" />
+      <workItem from="1622395914550" duration="1341000" />
+      <workItem from="1622425338330" duration="6447000" />
+      <workItem from="1623287874768" duration="1911000" />
+      <workItem from="1623631788635" duration="704000" />
+      <workItem from="1623632759116" duration="3695000" />
     </task>
     <servers />
   </component>
