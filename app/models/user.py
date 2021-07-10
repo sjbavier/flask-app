@@ -8,11 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.String(64), unique=True, index=True, nullable=False)
     user_password = db.Column(db.String(128), nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    """
-    the roles.id argument for ForeignKey should be interpreted as id values from roles table
-    """
-    roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    roles = db.relationship('Role', secondary='user_role')
 
     def __repr__(self):
         return '<User %r>' % self.user_password
@@ -35,4 +31,23 @@ class User(db.Model):
         return check_password_hash(self.user_password, password)
 
 
+class Role(db.Model):
+    __tablename__ = 'roles'
 
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    name = db.Column(db.String(64), unique=True, nullable=False)
+
+    users = db.relationship('User', secondary='user_role')
+
+    def __repr__(self):
+        return '<Role %r>' % self.name
+
+
+class UserRole(db.Model):
+    __tablename__ = 'user_role'
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), primary_key=True)
+
+    def __repr__(self):
+        return '<UserRole %r>' % self.name

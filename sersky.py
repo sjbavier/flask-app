@@ -2,9 +2,9 @@ import os
 import click
 from flask_migrate import Migrate
 from app import create_app, db
-from app.models.user import User
-from app.models.role import Role
-from app.models.bookmark import Bookmark
+from app.models.user import User, Role
+from app.models.bookmark import Bookmark, Category
+import json
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
@@ -25,3 +25,54 @@ def test(test_names):
     else:
         tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
+
+
+@app.cli.command('db_create')
+def db_create():
+    db.create_all()
+    print('database created')
+
+
+@app.cli.command('db_drop')
+def db_drop():
+    db.drop_all()
+    print('database dropped')
+
+
+@app.cli.command('db_create')
+def db_create():
+    db.create_all()
+    print('database created')
+
+
+@app.cli.command('db_seed')
+def db_seed():
+    file = open('bookmarksJson.json', 'r')
+    bookmarks = json.load(file)
+    for b in bookmarks:
+        print(f'adding {b}')
+        bq = db.session.query(Bookmark.bookmark_id).filter(Bookmark.link == b['link'])
+        if not db.session.query(bq.exists()).scalar():
+            add_b = Bookmark(title=b['title'], link=b['link'])
+            # check for existence of key category and type list
+            if 'category' in b and isinstance(b['category'], list):
+                for c in b['category']:
+                    # test for existence of category entry
+                    q = db.session.query(Category.category_id).filter(Category.name == c)
+                    print(q)
+                    # get the boolean of whether q exists
+                    if db.session.query(q.exists()).scalar():
+                        cq = Category.query.filter_by(name=c).first()
+                        # add existing category to the bookmark
+                        add_b.categories_collection.append(cq)
+                    # if q doesn't exist
+                    else:
+                        # create Category object
+                        add_c = Category(name=c)
+                        # add c to b
+                        add_b.categories_collection.append(add_c)
+                    # add bookmark and commit changes
+                    db.session.add(add_b)
+                    db.session.commit()
+    file.close()
+    print('database_seeded')
