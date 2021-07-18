@@ -1,7 +1,14 @@
 from .. import db
 from . import api
-from ..models.bookmark import Bookmark, bookmark_schema, bookmarks_schema, Category, categories_schema
+from ..models.bookmark import BookmarkSchema, CategorySchema
+from app.models.bookmark import Bookmark, Category
 from flask import jsonify
+
+
+bookmark_schema = BookmarkSchema()
+bookmarks_schema = BookmarkSchema(many=True)
+category_schema = CategorySchema()
+categories_schema = CategorySchema(many=True)
 
 
 @api.route('/api/bookmarks', methods=['GET'])

@@ -1,5 +1,6 @@
 from .. import db
 from .. import ma
+from marshmallow import fields
 
 
 class Bookmark(db.Model):
@@ -15,13 +16,10 @@ class Bookmark(db.Model):
 
 
 class BookmarkSchema(ma.Schema):
-    # categories_collection = ma.Nested(categories_schema, many=True)
-    class Meta:
-        fields = ('bookmark_id', 'title', 'link')
-
-
-bookmark_schema = BookmarkSchema()
-bookmarks_schema = BookmarkSchema(many=True)
+    bookmark_id = fields.Integer()
+    title = fields.String()
+    link = fields.String()
+    categories_collection = fields.Nested(lambda: CategorySchema(only=('category_id', 'name',)), many=True)
 
 
 class Category(db.Model):
@@ -32,16 +30,13 @@ class Category(db.Model):
     bookmarks_collection = db.relationship('Bookmark', secondary='bookmark_category', back_populates='categories_collection', lazy='joined', join_depth=1)
 
     def __repr__(self):
-        return '%r' % self.name
+        return '<Category %r>' % self.name
 
 
 class CategorySchema(ma.Schema):
-    class Meta:
-        fields = ('category_id', 'name')
-
-
-category_schema = CategorySchema()
-categories_schema = CategorySchema(many=True)
+    category_id = fields.Integer()
+    name = fields.String()
+    bookmarks_collection = fields.Nested(lambda: BookmarkSchema(only=('bookmark_id', 'title', 'link')), many=True)
 
 
 class BookmarkCategory(db.Model):
