@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
@@ -38,7 +38,9 @@ def create_app(config_name):
     ma.init_app(app)
 
     from .api import api as api_blueprint
-    app.register_blueprint(api_blueprint)
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(api_blueprint, url_prefix='/api')
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app
 

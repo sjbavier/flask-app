@@ -11,14 +11,14 @@ category_schema = CategorySchema()
 categories_schema = CategorySchema(many=True)
 
 
-@api.route('/api/bookmarks', methods=['GET'])
+@api.route('/bookmarks', methods=['GET'])
 def bookmarks():
     bookmarks_list = Bookmark.query.all()
     result = bookmarks_schema.dump(bookmarks_list)
     return jsonify(result)
 
 
-@api.route('/api/categories', methods=['GET'])
+@api.route('/categories', methods=['GET'])
 def categories():
     categories_list = Category.query.all()
     results = categories_schema.dump(categories_list)

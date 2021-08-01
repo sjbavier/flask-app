@@ -22,7 +22,7 @@ class User(db.Model):
 
     @password.setter
     def password(self, password):
-        self.user_password = generate_password_hash(password)
+        self.user_password = generate_password_hash(password, method='pbkdf2:sha512', salt_length=32)
 
     def verify_password(self, password):
         """
