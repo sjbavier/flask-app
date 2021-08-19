@@ -1438,51 +1438,63 @@ bookmark_id</ColNames>
       <DataType>VARCHAR(64)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="517" parent="174" name="sqlite_autoindex_roles_1">
+    <column id="517" parent="174" name="default">
+      <Position>3</Position>
+      <DataType>BOOLEAN|0s</DataType>
+    </column>
+    <column id="518" parent="174" name="permissions">
+      <Position>4</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <index id="519" parent="174" name="sqlite_autoindex_roles_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="518" parent="174">
+    <index id="520" parent="174" name="ix_roles_default">
+      <ColNames>default</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="521" parent="174">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="519" parent="174">
+    <key id="522" parent="174">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_roles_1</UnderlyingIndexName>
     </key>
-    <column id="520" parent="175" name="type">
+    <column id="523" parent="175" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="521" parent="175" name="name">
+    <column id="524" parent="175" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="522" parent="175" name="tbl_name">
+    <column id="525" parent="175" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="523" parent="175" name="rootpage">
+    <column id="526" parent="175" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="524" parent="175" name="sql">
+    <column id="527" parent="175" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="525" parent="176" name="user_id">
+    <column id="528" parent="176" name="user_id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="526" parent="176" name="role_id">
+    <column id="529" parent="176" name="role_id">
       <Position>2</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="527" parent="176" name="sqlite_autoindex_user_role_1">
+    <index id="530" parent="176" name="sqlite_autoindex_user_role_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id
 role_id</ColNames>
@@ -1490,43 +1502,43 @@ role_id</ColNames>
 </ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="528" parent="176">
+    <key id="531" parent="176">
       <ColNames>user_id
 role_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_user_role_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="529" parent="176">
+    <foreign-key id="532" parent="176">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="530" parent="176">
+    <foreign-key id="533" parent="176">
       <ColNames>role_id</ColNames>
       <RefTableName>roles</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="531" parent="177" name="id">
+    <column id="534" parent="177" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="532" parent="177" name="user_id">
+    <column id="535" parent="177" name="user_id">
       <Position>2</Position>
       <DataType>VARCHAR(64)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="533" parent="177" name="user_password">
+    <column id="536" parent="177" name="user_password">
       <Position>3</Position>
       <DataType>VARCHAR(128)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="534" parent="177" name="ix_users_user_id">
+    <index id="537" parent="177" name="ix_users_user_id">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="535" parent="177">
+    <key id="538" parent="177">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>

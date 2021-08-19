@@ -12,7 +12,7 @@ migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User=User, Role=Role, Bookmark=Bookmark)
+    return dict(db=db, User=User, Role=Role, Bookmark=Bookmark, Category=Category)
 
 
 @app.cli.command()
@@ -25,12 +25,6 @@ def test(test_names):
     else:
         tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
-
-
-@app.cli.command('db_create')
-def db_create():
-    db.create_all()
-    print('database created')
 
 
 @app.cli.command('db_drop')
@@ -75,4 +69,7 @@ def db_seed():
                     db.session.add(add_b)
                     db.session.commit()
     file.close()
+    print('bookmarks added\n categories added')
+    Role.insert_roles()
+    print('inserted roles')
     print('database_seeded')

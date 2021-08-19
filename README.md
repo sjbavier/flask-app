@@ -98,3 +98,22 @@ flask db upgrade
 flask db downgrade
 ```
 
+## Using CLI commands
+
+Create the database from models
+
+```sh
+flask db_create
+```
+
+Seed the database from json file
+
+```sh
+flask db_seed
+```
+
+Drop the database
+
+```sh
+flask db_drop
+```
