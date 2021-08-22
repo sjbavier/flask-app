@@ -11,21 +11,14 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.String(64), unique=True, index=True, nullable=False)
     user_password = db.Column(db.String(128), nullable=False)
-    roles_collection = db.relationship('Role', secondary='user_role', back_populates='users_collection', lazy='joined', join_depth=1)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role = db.relationship("Role", back_populates="user_collection")
 
     def __repr__(self):
         return '<User %r>' % self.user_password
 
-    # TODO: fix the role permissions and verification
-    def __init__(self, **kwargs):
-        super(User, self).__init__(**kwargs)
-        # upon user instantiation, add role
-        if not self.roles_collection or self.roles_collection is None:
-            if self.user_id == os.getenv('SERVER_ADMIN'):
-                self.roles_collection.append(Role.query.filter_by(name="Admin").first())
-            else:
-                # self.roles_collection = Role.query.filter_by(default=True).first()
-                self.roles_collection.append(Role.query.filter_by(default=True).first())
+    def add_role(self, role):
+        self.role = Role.query.filter_by(name=role).first()
 
     @property
     def password(self):
@@ -52,7 +45,6 @@ class UserSchema(ma.Schema):
     id = fields.Integer()
     user_id = fields.String()
     user_password = fields.String()
-    roles_collection = fields.Nested(lambda: RoleSchema(only=('id', 'name',)), many=True)
 
 
 class Permission:
@@ -68,7 +60,7 @@ class Role(db.Model):
     name = db.Column(db.String(64), unique=True, nullable=False)
     default = db.Column(db.Boolean, default=False, index=True)
     permissions = db.Column(db.Integer)
-    users_collection = db.relationship('User', secondary='user_role', back_populates='roles_collection', lazy='joined', join_depth=1)
+    user_collection = db.relationship('User')
 
     def __init__(self, **kwargs):
         super(Role, self).__init__(**kwargs)
@@ -122,14 +114,6 @@ class RoleSchema(ma.Schema):
     name = fields.String()
     default = fields.Boolean()
     permissions = fields.Integer()
-    users_collection = fields.Nested(lambda: UserSchema(only=('id', 'user_id')), many=True)
+    # users_collection = fields.Nested(lambda: UserSchema(only=('id', 'user_id')), many=True)
 
 
-class UserRole(db.Model):
-    __tablename__ = 'user_role'
-
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), primary_key=True)
-
-    def __repr__(self):
-        return '<UserRole %r>' % self.name

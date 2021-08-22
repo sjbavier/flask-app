@@ -1,8 +1,7 @@
 from . import auth
 from flask import jsonify
 from app.models.user import User
-from .. import db, request
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+from .. import db, request, create_access_token
 
 
 @auth.route('/register', methods=['POST'])
@@ -17,6 +16,7 @@ def register():
         if password == confirm_password:
             user = User(user_id=email, password=password)
             # TODO : Add role to default user
+            user.add_role('User')
             db.session.add(user)
             db.session.commit()
             return jsonify(message=f'User ${email} created successfully'), 201
@@ -37,7 +37,7 @@ def login():
 
     test_email = User.query.filter_by(user_id=email).first()
     if test_email:
-        user = User(user_id=email)
+        user = User.query.filter_by(user_id=email).first()
         verified_password = user.verify_password(password)
         if verified_password:
             access_token = create_access_token(identity=email)

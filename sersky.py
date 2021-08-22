@@ -44,7 +44,6 @@ def db_seed():
     file = open('bookmarksJson.json', 'r')
     bookmarks = json.load(file)
     for b in bookmarks:
-        print(f'adding {b}')
         bq = db.session.query(Bookmark.bookmark_id).filter(Bookmark.link == b['link'])
         if not db.session.query(bq.exists()).scalar():
             add_b = Bookmark(title=b['title'], link=b['link'])
@@ -53,7 +52,6 @@ def db_seed():
                 for c in b['category']:
                     # test for existence of category entry
                     q = db.session.query(Category.category_id).filter(Category.name == c)
-                    print(q)
                     # get the boolean of whether q exists
                     if db.session.query(q.exists()).scalar():
                         cq = Category.query.filter_by(name=c).first()
@@ -69,7 +67,7 @@ def db_seed():
                     db.session.add(add_b)
                     db.session.commit()
     file.close()
-    print('bookmarks added\n categories added')
+    print('bookmarks added\ncategories added')
     Role.insert_roles()
     print('inserted roles')
     print('database_seeded')

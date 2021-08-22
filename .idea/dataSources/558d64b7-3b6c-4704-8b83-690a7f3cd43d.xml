@@ -1533,14 +1533,23 @@ role_id</ColNames>
       <DataType>VARCHAR(128)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="537" parent="177" name="ix_users_user_id">
+    <column id="537" parent="177" name="role_id">
+      <Position>4</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <index id="538" parent="177" name="ix_users_user_id">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="538" parent="177">
+    <key id="539" parent="177">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="540" parent="177">
+      <ColNames>role_id</ColNames>
+      <RefTableName>roles</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

@@ -23,6 +23,7 @@ class Config:
     SERVER_MAIL_SENDER = 'Server Admin <server@server.com>'
     SERVER_ADMIN = os.environ.get('SERVER_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or 'super secret jwt'
 
     @staticmethod
     def init_app(app):
