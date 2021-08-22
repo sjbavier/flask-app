@@ -19,9 +19,10 @@ class User(db.Model):
     # TODO: fix the role permissions and verification
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
+        # upon user instantiation, add role
         if not self.roles_collection or self.roles_collection is None:
             if self.user_id == os.getenv('SERVER_ADMIN'):
-                self.roles_collection = Role.query.filter_by(name="Admin").first()
+                self.roles_collection.append(Role.query.filter_by(name="Admin").first())
             else:
                 # self.roles_collection = Role.query.filter_by(default=True).first()
                 self.roles_collection.append(Role.query.filter_by(default=True).first())

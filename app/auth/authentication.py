@@ -26,6 +26,8 @@ def register():
 
 @auth.route('/login', methods=['POST'])
 def login():
+    email = ''
+    password = ''
     if request.is_json:
         email = request.json['email']
         password = request.json['password']

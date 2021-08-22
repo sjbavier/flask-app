@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a1c0b6-08b1-43eb-b032-4832663abf0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/auth/decorators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat.values" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat.values" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat.values.s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d/entities/entities.dat_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c466e32f-f27b-43a3-9f54-d28ab1219641.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c466e32f-f27b-43a3-9f54-d28ab1219641.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c466e32f-f27b-43a3-9f54-d28ab1219641/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c466e32f-f27b-43a3-9f54-d28ab1219641/entities/entities.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c466e32f-f27b-43a3-9f54-d28ab1219641/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c466e32f-f27b-43a3-9f54-d28ab1219641/entities/entities.dat.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/auth/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/authentication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sersky.py" beforeDir="false" afterPath="$PROJECT_DIR$/sersky.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +136,7 @@
       <workItem from="1627775364964" duration="10235000" />
       <workItem from="1628601520626" duration="14165000" />
       <workItem from="1628795969951" duration="12832000" />
-      <workItem from="1629163108854" duration="11186000" />
+      <workItem from="1629163108854" duration="13438000" />
     </task>
     <servers />
   </component>
@@ -168,13 +156,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
-          <line>26</line>
+          <line>27</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/models/user.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="10" />
+          <line>44</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/auth/authentication.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -187,7 +180,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/server$server.coverage" NAME="server Coverage Results" MODIFIED="1629331779013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
+    <SUITE FILE_PATH="coverage/server$server.coverage" NAME="server Coverage Results" MODIFIED="1629333323470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
     <SUITE FILE_PATH="coverage/server$flask_seed.coverage" NAME="flask_seed Coverage Results" MODIFIED="1625511506485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
