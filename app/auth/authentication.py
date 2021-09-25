@@ -2,6 +2,7 @@ from . import auth
 from flask import jsonify
 from app.models.user import User
 from .. import db, request, create_access_token
+import os
 
 
 @auth.route('/register', methods=['POST'])
@@ -15,11 +16,13 @@ def register():
         confirm_password = request.form['confirm_password']
         if password == confirm_password:
             user = User(user_id=email, password=password)
-            # TODO : Add role to default user
-            user.add_role('User')
+            if email == os.getenv('SERVER_ADMIN'):
+                user.add_role('Admin')
+            else:
+                user.add_role('User')
             db.session.add(user)
             db.session.commit()
-            return jsonify(message=f'User ${email} created successfully'), 201
+            return jsonify(message=f'User {email} created successfully'), 201
         else:
             return jsonify(message='Passwords don\'t match'), 409
 

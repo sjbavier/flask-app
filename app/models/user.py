@@ -37,8 +37,11 @@ class User(db.Model):
         """
         return check_password_hash(self.user_password, password)
 
-    # def can(self, perm):
-    #     return self.role is not None and self.role.has_permission(perm)
+    def can(self, perm):
+        """
+        returns boolean value True if user has permission
+        """
+        return self.role is not None and self.role.has_permission(perm)
 
 
 class UserSchema(ma.Schema):

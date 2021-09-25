@@ -1,4 +1,18 @@
-# Installation
+# Sersky the flasky 'like' headless server
+
+## Build
+
+- set venv
+- sqlalchemy for ORM
+- flask-migration : Alembic wrapper for db design changes from model definition
+- flask config for app factory design
+- flask blueprints for modules
+- flask email and jinja templates
+- flask testing
+- flask-jwt / flask-login
+- marshmallow for serialization of JSON
+
+## Installation
 
 Make sure you have these installed
 
@@ -45,7 +59,13 @@ pip freeze
 To use the development server the environment variable FLASK_APP needs the path of the entry point
 
 ```sh
-export FLASK_APP=__init__.py
+#!/bin/bash
+
+export FLASK_APP=sersky.py
+export FLASK_DEBUG=1
+export FLASK_ENV=development
+export FLASK_CONFIG=development
+export SERVER_ADMIN=admin@email.com
 ```
 
 Then you can run the development server
@@ -67,7 +87,7 @@ Set environment variable FLASK_DEBUG=1 and run
 
 ```sh
 export FLASK_DEBUG=1
-export FLASK_APP=__init__.py
+export FLASK_APP=sersky.py
 flask run
 ```
 

@@ -5,7 +5,7 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from flask_marshmallow import Marshmallow
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity, get_current_user
 
 
 bootstrap = Bootstrap()

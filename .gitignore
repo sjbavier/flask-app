@@ -41,4 +41,5 @@ nosetests.xml
 # Virtual environment
 venv
 bookmarksJson.json
+*.json
 sersky.db
