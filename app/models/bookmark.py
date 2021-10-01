@@ -17,6 +17,16 @@ class Bookmark(db.Model):
     def __repr__(self):
         return '<Bookmark %r>' % self.title
 
+    @staticmethod
+    def create(title: str, link: str, category: list):
+        bookmark = Bookmark(title=title,link=link)
+        if category and isinstance(category, list):
+            for c in category:
+                Category.create(c, bookmark)
+            return True
+        else:
+            return False
+
 
 class BookmarkSchema(ma.Schema):
     bookmark_id = fields.Integer()
@@ -36,6 +46,17 @@ class Category(db.Model):
 
     def __repr__(self):
         return '<Category %r>' % self.name
+
+    @staticmethod
+    def create(category: str, bookmark):
+        category_exists = Category.query.filter_by(name=category).first()
+        if category_exists:
+            bookmark.categories_collection.append(category_exists)
+        else:
+            add_category = Category(name=category)
+            bookmark.categories_collection.append(add_category)
+        db.session.add(bookmark)
+        db.session.commit()
 
 
 class CategorySchema(ma.Schema):

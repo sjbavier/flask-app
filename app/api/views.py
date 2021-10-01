@@ -22,26 +22,31 @@ categories_schema = CategorySchema(many=True)
 @permission_required(Permission.WRITE)
 def create_bookmark():
     link = request.json['link']
-    test_bookmark = Bookmark.query.filter_by(link=link).first()
-    if test_bookmark:
+    bookmark_exists = Bookmark.query.filter_by(link=link).first()
+    if bookmark_exists:
         return jsonify(msg='Bookmark url already exists'), 409
     else:
         title = request.json['title']
         category = request.json['category']
-        bookmark = Bookmark(title=title,link=link)
-        if category and isinstance(category, list):
-            for c in category:
-                test_category = Category.query.filter_by(name=c).first()
-                if test_category:
-                    bookmark.categories_collection.append(test_category)
-                else:
-                    add_c = Category(name=c)
-                    bookmark.categories_collection.append(add_c)
-                db.session.add(bookmark)
-                db.session.commit()
+        created_bookmark = Bookmark.create(title, link, category)
+        if created_bookmark:
             return jsonify(msg=f'Bookmark added {title}')
         else:
-            return jsonify(msg=f'Bookmark {title} has improper category field'), 409
+            return jsonify(msg=f'Bookmark {title} has not been added'), 409
+        # bookmark = Bookmark(title=title,link=link)
+        # if category and isinstance(category, list):
+        #     for c in category:
+        #         category_exists = Category.query.filter_by(name=c).first()
+        #         if category_exists:
+        #             bookmark.categories_collection.append(category_exists)
+        #         else:
+        #             add_c = Category(name=c)
+        #             bookmark.categories_collection.append(add_c)
+        #         db.session.add(bookmark)
+        #         db.session.commit()
+        #     return jsonify(msg=f'Bookmark added {title}')
+        # else:
+        #     return jsonify(msg=f'Bookmark {title} has improper category field'), 409
 
 
 # ///////////////////
@@ -64,20 +69,20 @@ def bookmarks():
 # @permission_required(Permission.WRITE)
 def update_bookmark(bookmark_id: int):
     link = request.json['link']
-    test_bookmark = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
-    if test_bookmark:
+    bookmark_exists = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
+    if bookmark_exists:
         title = request.json['title']
         category = request.json['category']
-        test_categories = test_bookmark.categories_collection.all()
-        print(test_categories)
+        existing_categories = bookmark_exists.categories_collection.all()
+        print(existing_categories)
         if category and isinstance(category, list):
             for c in category:
-                test_category = Category.query.filter_by(name=c).first()
-                if test_category:
-                    test_bookmark.categories_collection.append(test_category)
+                category_exists = Category.query.filter_by(name=c).first()
+                if category_exists:
+                    bookmark_exists.categories_collection.append(category_exists)
                 else:
                     add_c = Category(name=c)
-                    test_bookmark.categories_collection.append(add_c)
+                    bookmark_exists.categories_collection.append(add_c)
                 db.session.commit()
             return jsonify(msg=f'Bookmark updated {title}')
         else:
@@ -94,9 +99,9 @@ def update_bookmark(bookmark_id: int):
 @jwt_required()
 @permission_required(Permission.EXECUTE)
 def delete_bookmark(bookmark_id: int):
-    bookmark = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
-    if bookmark:
-        db.session.delete(bookmark)
+    bookmark_exists = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
+    if bookmark_exists:
+        db.session.delete(bookmark_exists)
         db.session.commit()
         return jsonify(message='deleted a bookmark'), 202
     else:
