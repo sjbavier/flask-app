@@ -43,3 +43,6 @@ venv
 bookmarksJson.json
 *.json
 sersky.db
+
+# configuration
+.env

@@ -59,17 +59,17 @@ def bookmarks():
 # Update Bookmarks
 # ///////////////////
 
-@api.route('/bookmarks/', methods=['PUT'])
-@jwt_required()
-@permission_required(Permission.WRITE)
-def delete_bookmark():
+@api.route('/bookmarks/<int:bookmark_id>', methods=['PUT'])
+# @jwt_required()
+# @permission_required(Permission.WRITE)
+def update_bookmark(bookmark_id: int):
     link = request.json['link']
-    test_bookmark = Bookmark.query.filter_by(link=link).first()
+    test_bookmark = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
     if test_bookmark:
         title = request.json['title']
         category = request.json['category']
-        test_bookmark.title = title
-        test_bookmark.link = link
+        test_categories = test_bookmark.categories_collection.all()
+        print(test_categories)
         if category and isinstance(category, list):
             for c in category:
                 test_category = Category.query.filter_by(name=c).first()
