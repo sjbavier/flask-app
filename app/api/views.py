@@ -22,38 +22,20 @@ categories_schema = CategorySchema(many=True)
 @permission_required(Permission.WRITE)
 def create_bookmark():
     link = request.json['link']
-    bookmark_exists = Bookmark.query.filter_by(link=link).first()
-    if bookmark_exists:
-        return jsonify(msg='Bookmark url already exists'), 409
+    title = request.json['title']
+    category = request.json['category']
+    created_bookmark = Bookmark.create(title, link, category)
+    if created_bookmark:
+        return jsonify(msg=f'Bookmark added {title}'), 201
     else:
-        title = request.json['title']
-        category = request.json['category']
-        created_bookmark = Bookmark.create(title, link, category)
-        if created_bookmark:
-            return jsonify(msg=f'Bookmark added {title}')
-        else:
-            return jsonify(msg=f'Bookmark {title} has not been added'), 409
-        # bookmark = Bookmark(title=title,link=link)
-        # if category and isinstance(category, list):
-        #     for c in category:
-        #         category_exists = Category.query.filter_by(name=c).first()
-        #         if category_exists:
-        #             bookmark.categories_collection.append(category_exists)
-        #         else:
-        #             add_c = Category(name=c)
-        #             bookmark.categories_collection.append(add_c)
-        #         db.session.add(bookmark)
-        #         db.session.commit()
-        #     return jsonify(msg=f'Bookmark added {title}')
-        # else:
-        #     return jsonify(msg=f'Bookmark {title} has improper category field'), 409
+        return jsonify(msg=f'Bookmark {title} has not been added'), 409
 
 
 # ///////////////////
 # Read Bookmarks
 # ///////////////////
 
-@api.route('/bookmarks', methods=['GET'])
+@api.route('/bookmarks/', methods=['GET'])
 def bookmarks():
     bookmarks_list = Bookmark.query.all()
     result = bookmarks_schema.dump(bookmarks_list)
@@ -65,30 +47,17 @@ def bookmarks():
 # ///////////////////
 
 @api.route('/bookmarks/<int:bookmark_id>', methods=['PUT'])
-# @jwt_required()
-# @permission_required(Permission.WRITE)
+@jwt_required()
+@permission_required(Permission.WRITE)
 def update_bookmark(bookmark_id: int):
     link = request.json['link']
-    bookmark_exists = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
-    if bookmark_exists:
-        title = request.json['title']
-        category = request.json['category']
-        existing_categories = bookmark_exists.categories_collection.all()
-        print(existing_categories)
-        if category and isinstance(category, list):
-            for c in category:
-                category_exists = Category.query.filter_by(name=c).first()
-                if category_exists:
-                    bookmark_exists.categories_collection.append(category_exists)
-                else:
-                    add_c = Category(name=c)
-                    bookmark_exists.categories_collection.append(add_c)
-                db.session.commit()
-            return jsonify(msg=f'Bookmark updated {title}')
-        else:
-            return jsonify(msg=f'Bookmark {title} has improper category field'), 409
+    title = request.json['title']
+    category = request.json['category']
+    updated_bookmark = Bookmark.update(bookmark_id, title, link, category)
+    if updated_bookmark:
+        return jsonify(msg=f'Bookmark updated {title}'), 204
     else:
-        return jsonify(msg='Bookmark url already exists'), 409
+        return jsonify(msg=f'Bookmark {title} has not been updated'), 409
 
 
 # ///////////////////
@@ -103,7 +72,7 @@ def delete_bookmark(bookmark_id: int):
     if bookmark_exists:
         db.session.delete(bookmark_exists)
         db.session.commit()
-        return jsonify(message='deleted a bookmark'), 202
+        return jsonify(message='deleted a bookmark'), 204
     else:
         return jsonify(message='bookmark does not exist'), 404
 

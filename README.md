@@ -1,5 +1,30 @@
 # Sersky the flasky 'like' headless server
 
+# Status codes:
+
+200 OK The request was completed successfully.
+
+201 Created The request was completed successfully and a new resource was created as a result.
+
+202 Accepted The request was accepted for processing, but it is still in progress and will run
+asynchronously.
+
+204 No Content The request was completed successfully and there is no data to return in the response.
+
+400 Bad Request The request is invalid or inconsistent.
+
+401 Unauthorized The request does not include authentication information or the credentials provided are
+invalid.
+
+403 Forbidden The authentication credentials sent with the request are insufficient for the request.
+
+404 Not Found The resource referenced in the URL was not found.
+
+405 Method Not Allowed The method requested is not supported for the given resource.
+
+500 Internal Server Error An unexpected error occurred while processing the request.
+
+
 ## Build
 
 - set venv

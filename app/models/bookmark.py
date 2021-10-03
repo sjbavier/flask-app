@@ -18,12 +18,46 @@ class Bookmark(db.Model):
         return '<Bookmark %r>' % self.title
 
     @staticmethod
-    def create(title: str, link: str, category: list):
-        bookmark = Bookmark(title=title,link=link)
-        if category and isinstance(category, list):
-            for c in category:
-                Category.create(c, bookmark)
-            return True
+    def create(title: str, link: str, categories: list):
+        """
+        static method: accepts title str, link str and categories list
+        returns True or False if creation was successful
+        """
+        bookmark_exists = Bookmark.query.filter_by(link=link).first()
+        if bookmark_exists:
+            return False
+        else:
+            bookmark = Bookmark(title=title,link=link)
+            if categories and isinstance(categories, list):
+                for category in categories:
+                    Category.create(category, bookmark)
+                return True
+            else:
+                return False
+
+    def flush_categories(self):
+        for category in self.categories_collection:
+            # this removes the category from the collection
+            # but relies on delete_category_orphans for clean-up
+            self.categories_collection.remove(category)
+
+    @staticmethod
+    def update(bookmark_id: int, title: str, link: str, categories: list):
+        """
+        static method: accepts bookmark_id int, title str, link str and categories list
+        checks for existing bookmark to update and flushes the existing categories
+        """
+        bookmark_exists = Bookmark.query.filter_by(bookmark_id=bookmark_id).first()
+        if bookmark_exists:
+            bookmark_exists.title = title
+            bookmark_exists.link = link
+            bookmark_exists.flush_categories()
+            if categories and isinstance(categories, list):
+                for category in categories:
+                    Category.create(category, bookmark_exists)
+                return True
+            else:
+                return False
         else:
             return False
 
@@ -49,6 +83,10 @@ class Category(db.Model):
 
     @staticmethod
     def create(category: str, bookmark):
+        """
+        static method: accepts a single category and bookmark object.
+        checks for existing category and appends the collection.
+        """
         category_exists = Category.query.filter_by(name=category).first()
         if category_exists:
             bookmark.categories_collection.append(category_exists)
