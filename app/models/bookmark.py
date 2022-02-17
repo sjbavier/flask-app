@@ -36,6 +36,9 @@ class Bookmark(db.Model):
                 return False
 
     def flush_categories(self):
+        """
+        removes the categories_collection items
+        """
         for category in self.categories_collection:
             # this removes the category from the collection
             # but relies on delete_category_orphans for clean-up

@@ -48,3 +48,4 @@ def login():
         else:
             return jsonify(message='Password is incorrect'), 409
 
+    return jsonify(message='User does not exist'), 404
