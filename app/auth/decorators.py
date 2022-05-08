@@ -9,8 +9,8 @@ def permission_required(permission):
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
-            current_email = get_jwt_identity()
-            current_user = User.query.filter_by(user_id=current_email).first()
+            user_id = get_jwt_identity()
+            current_user = User.query.filter_by(id=user_id).first()
             print(current_user.role)
             if not current_user.can(permission):
                 abort(403)

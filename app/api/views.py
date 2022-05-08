@@ -3,7 +3,7 @@ from . import api
 from ..models.bookmark import BookmarkSchema, CategorySchema
 from app.models.bookmark import Bookmark, Category
 from flask import jsonify
-from app import jwt_required, request
+from app import jwt_required, request, config
 from app.auth.decorators import permission_required, debug
 from app.models.user import Permission
 
@@ -17,7 +17,7 @@ categories_schema = CategorySchema(many=True)
 # Create Bookmarks
 # ///////////////////
 
-@api.route('/bookmarks', methods=['POST'])
+@api.route('/bookmarks/', methods=['POST'])
 @jwt_required()
 @permission_required(Permission.WRITE)
 def create_bookmark():
@@ -36,11 +36,31 @@ def create_bookmark():
 # ///////////////////
 
 @api.route('/bookmarks/', methods=['GET'])
+@jwt_required()
+@permission_required(Permission.READ)
 def bookmarks():
     bookmarks_list = Bookmark.query.all()
     result = bookmarks_schema.dump(bookmarks_list)
     return jsonify(result)
 
+
+# ///////////////////
+# Paginate Bookmarks
+# ///////////////////
+
+@api.route('/bookmarks/page/<int:page>/page_size/<int:page_size>')
+@jwt_required()
+@permission_required(Permission.READ)
+def bookmarks_page(page=1, page_size=10):
+    bookmarks_info = Bookmark.query.order_by(Bookmark.bookmark_id.asc())\
+        .paginate(page, per_page=page_size)
+    result = bookmarks_schema.dump(bookmarks_info.items)
+    payload = {
+        'num_pages': bookmarks_info.pages,
+        'bookmarks_total': bookmarks_info.total,
+        'data': result
+    }
+    return jsonify(payload)
 
 # ///////////////////
 # Update Bookmarks
