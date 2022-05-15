@@ -48,7 +48,8 @@ def login():
             role = Role.query.filter_by(id=role_id).first()
             access_token = create_access_token(identity=user.id)
             payload = {
-                'userId': user.user_id,
+                'userId': user.id,
+                'user': user.user_id,
                 'role': role.name,
                 'access_token': access_token,
                 'message': 'Login Successful'
@@ -64,12 +65,14 @@ def login():
 @auth.route('/authorize', methods=['GET'])
 @jwt_required()
 def authorize():
-    user_id = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
+    u_id = get_jwt_identity()
+    user = User.query.filter_by(id=u_id).first()
     role_id = user.role_id
     role = Role.query.filter_by(id=role_id).first()
     payload = {
-        'userId': user_id,
-        'role': role.name
+        'userId': u_id,
+        'user': user.user_id,
+        'role': role.name,
+        'message': 'Valid'
     }
     return jsonify(payload)
