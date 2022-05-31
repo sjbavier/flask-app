@@ -62,6 +62,7 @@ def bookmarks_page(page=1, page_size=10):
     }
     return jsonify(payload)
 
+
 # ///////////////////
 # Update Bookmarks
 # ///////////////////

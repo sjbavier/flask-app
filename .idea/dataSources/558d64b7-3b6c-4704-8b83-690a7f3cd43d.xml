@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="sersky.db">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.32">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.39">
     <root id="1"/>
     <collation id="2" parent="1" name="BINARY"/>
     <collation id="3" parent="1" name="NOCASE"/>
@@ -1346,7 +1346,6 @@
     </column>
     <index id="499" parent="491" name="sqlite_autoindex_alembic_version_1">
       <ColNames>version_num</ColNames>
-      <ColumnCollations></ColumnCollations>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
@@ -1380,8 +1379,6 @@
     <index id="505" parent="492" name="sqlite_autoindex_bookmark_category_1">
       <ColNames>category_id
 bookmark_id</ColNames>
-      <ColumnCollations>
-</ColumnCollations>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
@@ -1408,7 +1405,6 @@ bookmark_id</ColNames>
     </column>
     <index id="510" parent="493" name="sqlite_autoindex_bookmarks_1">
       <ColNames>link</ColNames>
-      <ColumnCollations></ColumnCollations>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
@@ -1453,13 +1449,11 @@ bookmark_id</ColNames>
     </column>
     <index id="520" parent="495" name="sqlite_autoindex_roles_1">
       <ColNames>name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
     <index id="521" parent="495" name="ix_roles_default">
       <ColNames>default</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="522" parent="495">
       <ColNames>id</ColNames>
@@ -1515,7 +1509,6 @@ bookmark_id</ColNames>
     </foreign-key>
     <index id="534" parent="497" name="ix_users_user_id">
       <ColNames>user_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="535" parent="497">

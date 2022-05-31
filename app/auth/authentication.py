@@ -8,14 +8,30 @@ import os
 
 @auth.route('/register', methods=['POST'])
 def register():
-    email = request.form['email']
-    test_email = User.query.filter_by(user_id=email).first()
-    if test_email:
-        return jsonify(message='Email already exists'), 409
+    email = ''
+    password = ''
+    confirm_password = ''
+    if request.is_json:
+        email = request.json['email']
+        password = request.json['password']
+        confirm_password = request.json['confirm_password']
     else:
+        email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
-        if password == confirm_password:
+
+    if not email:
+        return jsonify(message='Email Required'), 409
+    if not password:
+        return jsonify(message='Password Required'), 409
+    if not confirm_password:
+        return jsonify(message='Confirm Password Required'), 409
+
+    email_exists = User.query.filter_by(user_id=email).first()
+    if email_exists:
+        return jsonify(message='Email already exists'), 409
+    else:
+        if password == confirm_password and len(password) >= 8:
             user = User(user_id=email, password=password)
             if email == os.getenv('SERVER_ADMIN'):
                 user.add_role('Admin')
@@ -25,7 +41,7 @@ def register():
             db.session.commit()
             return jsonify(message=f'User {email} created successfully'), 201
         else:
-            return jsonify(message='Passwords don\'t match'), 409
+            return jsonify(message='Passwords don\'t match or not at least 8 characters long'), 409
 
 
 @auth.route('/login', methods=['POST'])
