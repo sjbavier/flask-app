@@ -11,7 +11,6 @@ def permission_required(permission):
         def decorated_function(*args, **kwargs):
             user_id = get_jwt_identity()
             current_user = User.query.filter_by(id=user_id).first()
-            print(current_user.role)
             if not current_user.can(permission):
                 abort(403)
             func = f(*args, **kwargs)

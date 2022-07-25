@@ -17,7 +17,7 @@ categories_schema = CategorySchema(many=True)
 # Create Bookmarks
 # ///////////////////
 
-@api.route('/bookmarks/', methods=['POST'])
+@api.route('/bookmarks', methods=['POST'])
 @jwt_required()
 @permission_required(Permission.WRITE)
 def create_bookmark():
@@ -26,16 +26,16 @@ def create_bookmark():
     category = request.json['category']
     created_bookmark = Bookmark.create(title, link, category)
     if created_bookmark:
-        return jsonify(msg=f'Bookmark added {title}'), 201
+        return jsonify(message=f'Bookmark added {title}'), 201
     else:
-        return jsonify(msg=f'Bookmark {title} has not been added'), 409
+        return jsonify(message=f'Bookmark {title} has not been added'), 409
 
 
 # ///////////////////
 # Read Bookmarks
 # ///////////////////
 
-@api.route('/bookmarks/', methods=['GET'])
+@api.route('/bookmarks', methods=['GET'])
 @jwt_required()
 @permission_required(Permission.READ)
 def bookmarks():
@@ -76,9 +76,9 @@ def update_bookmark(bookmark_id: int):
     category = request.json['category']
     updated_bookmark = Bookmark.update(bookmark_id, title, link, category)
     if updated_bookmark:
-        return jsonify(msg=f'Bookmark updated {title}'), 204
+        return jsonify(message=f'Bookmark updated {title}'), 204
     else:
-        return jsonify(msg=f'Bookmark {title} has not been updated'), 409
+        return jsonify(message=f'Bookmark {title} has not been updated'), 409
 
 
 # ///////////////////
@@ -96,6 +96,24 @@ def delete_bookmark(bookmark_id: int):
         return jsonify(message='deleted a bookmark'), 204
     else:
         return jsonify(message='bookmark does not exist'), 404
+
+
+# ///////////////////
+# Search Bookmarks
+# ///////////////////
+
+
+@api.route('/bookmarks/search/<search_string>', methods=['GET'])
+# @jwt_required()
+# @permission_required(Permission.READ)
+def search_bookmark(search_string):
+    bookmarks_exist = Bookmark.query.filter(Bookmark.title.ilike('%'+search_string+'%')).all()
+    results = bookmarks_schema.dump(bookmarks_exist)
+    print(results)
+    if bookmarks_exist:
+        return jsonify(data=results), 200
+    else:
+        return jsonify(message=f'No search results for {search_string}'), 404
 
 
 # ///////////////////
