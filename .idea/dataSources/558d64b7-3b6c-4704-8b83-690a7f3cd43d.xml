@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="sersky.db">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.39">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.41">
     <root id="1"/>
     <collation id="2" parent="1" name="BINARY"/>
     <collation id="3" parent="1" name="NOCASE"/>
@@ -1411,6 +1411,7 @@ bookmark_id</ColNames>
     <key id="511" parent="493">
       <ColNames>bookmark_id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>bookmark_id</UnderlyingIndexColNames>
     </key>
     <key id="512" parent="493">
       <ColNames>link</ColNames>
@@ -1428,6 +1429,7 @@ bookmark_id</ColNames>
     <key id="515" parent="494">
       <ColNames>category_id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>category_id</UnderlyingIndexColNames>
     </key>
     <column id="516" parent="495" name="id">
       <DataType>INTEGER|0s</DataType>
@@ -1458,6 +1460,7 @@ bookmark_id</ColNames>
     <key id="522" parent="495">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <key id="523" parent="495">
       <ColNames>name</ColNames>
@@ -1514,6 +1517,7 @@ bookmark_id</ColNames>
     <key id="535" parent="497">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
   </database-model>
 </dataSource>

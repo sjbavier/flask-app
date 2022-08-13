@@ -104,12 +104,11 @@ def delete_bookmark(bookmark_id: int):
 
 
 @api.route('/bookmarks/search/<search_string>', methods=['GET'])
-# @jwt_required()
-# @permission_required(Permission.READ)
+@jwt_required()
+@permission_required(Permission.READ)
 def search_bookmark(search_string):
     bookmarks_exist = Bookmark.query.filter(Bookmark.title.ilike('%'+search_string+'%')).all()
     results = bookmarks_schema.dump(bookmarks_exist)
-    print(results)
     if bookmarks_exist:
         return jsonify(data=results), 200
     else:
