@@ -44,5 +44,8 @@ bookmarksJson.json
 *.json
 sersky.db
 
+# Reference
+.vscode
+
 # configuration
 .env

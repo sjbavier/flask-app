@@ -157,6 +157,12 @@ Seed the database from json file
 flask db_seed
 ```
 
+Seed the database reference directory
+
+```shell
+flask db_reference_seed
+```
+
 Drop the database
 
 ```sh

@@ -6,4 +6,4 @@ and location of the package or module
 """
 api = Blueprint('api', __name__)
 
-from app.api import views, errors
+from app.api import views, errors, reference

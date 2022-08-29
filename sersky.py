@@ -1,10 +1,13 @@
+import json
 import os
+
 import click
 from flask_migrate import Migrate
+
 from app import create_app, db
-from app.models.user import User, Role
 from app.models.bookmark import Bookmark, Category
-import json
+from app.models.reference import Reference, ReferenceStructure
+from app.models.user import User, Role
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
@@ -12,7 +15,7 @@ migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User=User, Role=Role, Bookmark=Bookmark, Category=Category)
+    return dict(db=db, User=User, Role=Role, Bookmark=Bookmark, Category=Category, Reference=Reference)
 
 
 @app.cli.command()
@@ -37,6 +40,16 @@ def db_drop():
 def db_create():
     db.create_all()
     print('database created')
+
+
+@app.cli.command('db_reference_seed')
+def db_reference_seed():
+    ref_path = 'app/Reference'
+    reference_structure = ReferenceStructure.create_directory_structure(ref_path)
+    ref_struct = ReferenceStructure(path=ref_path, structure=json.dumps(reference_structure))
+    ref_struct.add_hash(json.dumps(reference_structure))
+    db.session.add(ref_struct)
+    db.session.commit()
 
 
 @app.cli.command('db_seed')
