@@ -51,6 +51,8 @@ def db_reference_seed():
     db.session.add(ref_struct)
     db.session.commit()
 
+    Reference.create_markdown_entries(ref_path)
+    
 
 @app.cli.command('db_seed')
 def db_seed():

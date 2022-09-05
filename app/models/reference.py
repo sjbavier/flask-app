@@ -2,7 +2,10 @@ import hashlib
 import json
 import os
 
+from marshmallow import fields
+
 from .. import db
+from .. import ma
 
 
 class ReferenceStructure(db.Model):
@@ -56,17 +59,14 @@ class ReferenceStructure(db.Model):
 class Reference(db.Model):
     __tablename__ = 'reference'
     reference_id = db.Column(db.Integer, primary_key=True, nullable=False)
-    reference_guid = db.Column(db.String(160), nullable=False)
     path = db.Column(db.String, nullable=False)
-    type = db.Column(db.String(), nullable=False)
     content = db.Column(db.String(), nullable=True)
-
     hash = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return '<Reference %r>' % self.title
 
-    def generate_hash(self):
+    def add_hash(self):
         """
         generate md5 hash based on file content
         """
@@ -95,3 +95,34 @@ class Reference(db.Model):
         content = ''
         with open(self.path, 'r') as f:
             self.content = f.read()
+
+    @staticmethod
+    def create_markdown_entries(path):
+        """
+        create markdown entries
+        """
+        if os.path.isdir(path):
+            [Reference.create_markdown_entries(os.path.join(path, x)) for x in os.listdir(path)]
+        else:
+            if path.endswith('.md'):
+                content = ''
+                with open(path, 'rb') as f:
+                    content = f.read()
+                    hashed_file = hashlib.md5(content).hexdigest()
+                    ref = Reference(path=path, hash=hashed_file, content=content)
+                    db.session.add(ref)
+                    db.session.commit()
+
+
+class ReferenceStructureSchema(ma.Schema):
+    reference_structure_id = fields.Integer()
+    hash = fields.String()
+    path = fields.String()
+    structure = fields.String()
+
+
+class ReferenceSchema(ma.Schema):
+    reference_id = fields.Integer()
+    path = fields.String()
+    content = fields.String()
+    hash = fields.String()
