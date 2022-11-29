@@ -64,7 +64,7 @@ class Reference(db.Model):
     hash = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
-        return '<Reference %r>' % self.title
+        return '<Reference %r>' % self.path
 
     def add_hash(self):
         """
