@@ -1,4 +1,5 @@
 import os
+
 """
 adding base directory as the absolute path of this file
 note that __file__ will not be present running script from interpreter
@@ -16,7 +17,7 @@ class Config:
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '587'))
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \
-        ['true', 'on', '1']
+                   ['true', 'on', '1']
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     SERVER_MAIL_SUBJECT_PREFIX = '[Server]'
@@ -43,11 +44,11 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://cra_user:xyz-replace-with-secret@localhost:3306/webmane'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://cra_user:xyz-replace-with-secret@localhost:5432/webmane'
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://cra_user:xyz-replace-with-secret@localhost:3306/webmane'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://cra_user:xyz-replace-with-secret@localhost:5432 /webmane'
 
 
 config = {
