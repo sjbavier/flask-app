@@ -12,9 +12,9 @@ class ReferenceStructure(db.Model):
     __tablename__ = 'reference_structure'
 
     reference_structure_id = db.Column(db.Integer, primary_key=True, nullable=False)
-    hash = db.Column(db.String(), nullable=False)
-    path = db.Column(db.String(), nullable=False)
-    structure = db.Column(db.String(), nullable=False)
+    hash = db.Column(db.String, nullable=False)
+    path = db.Column(db.String, nullable=False)
+    structure = db.Column(db.String, nullable=False)
 
     def __repr__(self):
         return '<ReferenceStructure %r>' % self.reference_structure_guid
@@ -60,8 +60,8 @@ class Reference(db.Model):
     __tablename__ = 'reference'
     reference_id = db.Column(db.Integer, primary_key=True, nullable=False)
     path = db.Column(db.String, nullable=False)
-    content = db.Column(db.String(), nullable=True)
-    hash = db.Column(db.String(), nullable=True)
+    content = db.Column(db.String, nullable=True)
+    hash = db.Column(db.String, nullable=True)
 
     def __repr__(self):
         return '<Reference %r>' % self.path
@@ -107,8 +107,9 @@ class Reference(db.Model):
             if path.endswith('.md'):
                 content = ''
                 with open(path, 'rb') as f:
-                    content = f.read()
-                    hashed_file = hashlib.md5(content).hexdigest()
+                    byte_content = f.read()
+                    content = byte_content.decode('utf-8')
+                    hashed_file = hashlib.md5(byte_content).hexdigest()
                     ref = Reference(path=path, hash=hashed_file, content=content)
                     db.session.add(ref)
                     db.session.commit()

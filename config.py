@@ -39,16 +39,36 @@ conditionally loaded configurations
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'sersky.db')
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'sersky.db')
+    DB_USER = os.environ.get('DB_USER') or 'user'
+    DB_PASSWORD = os.environ.get('DB_PASSWORD') or 'password'
+    DB_HOST = os.environ.get('DB_HOST') or 'localhost'
+    DB_PORT = os.environ.get('DB_PORT') or '5432'
+    DB_NAME = os.environ.get('DB_NAME') or 'webmane'
+    DB_TYPE = os.environ.get('DB_TYPE') or 'postgresql'
+    SQLALCHEMY_DATABASE_URI = f"{DB_TYPE}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://cra_user:xyz-replace-with-secret@localhost:5432/webmane'
+    DB_USER = os.environ.get('DB_USER') or 'user'
+    DB_PASSWORD = os.environ.get('DB_PASSWORD') or 'password'
+    DB_HOST = os.environ.get('DB_HOST') or 'localhost'
+    DB_PORT = os.environ.get('DB_PORT') or '5432'
+    DB_NAME = os.environ.get('DB_NAME') or 'webmane'
+    DB_TYPE = os.environ.get('DB_TYPE') or 'postgresql'
+    SQLALCHEMY_DATABASE_URI = f"{DB_TYPE}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql://cra_user:xyz-replace-with-secret@localhost:5432 /webmane'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql://cra_user:xyz-replace-with-secret@localhost:5432/webmane'
+    DB_USER = os.environ.get('DB_USER') or 'user'
+    DB_PASSWORD = os.environ.get('DB_PASSWORD') or 'password'
+    DB_HOST = os.environ.get('DB_HOST') or 'localhost'
+    DB_PORT = os.environ.get('DB_PORT') or '5432'
+    DB_NAME = os.environ.get('DB_NAME') or 'webmane'
+    DB_TYPE = os.environ.get('DB_TYPE') or 'postgresql'
+    SQLALCHEMY_DATABASE_URI = f"{DB_TYPE}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
 config = {

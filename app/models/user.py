@@ -1,8 +1,8 @@
+from marshmallow import fields
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from .. import db
 from .. import ma
-import os
-from werkzeug.security import generate_password_hash, check_password_hash
-from marshmallow import fields
 
 
 class User(db.Model):
@@ -10,7 +10,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.String(64), unique=True, index=True, nullable=False)
-    user_password = db.Column(db.String(128), nullable=False)
+    user_password = db.Column(db.String(), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     role = db.relationship("Role", back_populates="user_collection")
 
@@ -118,5 +118,3 @@ class RoleSchema(ma.Schema):
     default = fields.Boolean()
     permissions = fields.Integer()
     # users_collection = fields.Nested(lambda: UserSchema(only=('id', 'user_id')), many=True)
-
-

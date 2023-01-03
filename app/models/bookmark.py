@@ -1,15 +1,16 @@
-from .. import db
-from .. import ma
 from marshmallow import fields
 from sqlalchemy import event
+
+from .. import db
+from .. import ma
 
 
 class Bookmark(db.Model):
     __tablename__ = 'bookmarks'
 
     bookmark_id = db.Column(db.Integer, primary_key=True, nullable=False)
-    title = db.Column(db.String(128), nullable=False)
-    link = db.Column(db.String(128), unique=True, nullable=False)
+    title = db.Column(db.String, nullable=False)
+    link = db.Column(db.String, unique=True, nullable=False)
     categories_collection = db.relationship('Category', secondary='bookmark_category',
                                             back_populates='bookmarks_collection', lazy='dynamic',
                                             join_depth=1)
@@ -27,7 +28,7 @@ class Bookmark(db.Model):
         if bookmark_exists:
             return False
         else:
-            bookmark = Bookmark(title=title,link=link)
+            bookmark = Bookmark(title=title, link=link)
             if categories and isinstance(categories, list):
                 for category in categories:
                     Category.create(category, bookmark)
@@ -115,6 +116,6 @@ class BookmarkCategory(db.Model):
 
 @event.listens_for(db.Session, 'after_flush')
 def delete_category_orphans(session, ctx):
-    session.query(Category)\
-        .filter(~Category.bookmarks_collection.any())\
+    session.query(Category) \
+        .filter(~Category.bookmarks_collection.any()) \
         .delete(synchronize_session=False)
