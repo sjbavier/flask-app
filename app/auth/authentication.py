@@ -1,9 +1,11 @@
-from . import auth
-from flask import jsonify
-from app.models.user import User, Role
-from app import jwt_required, get_jwt_identity
-from .. import db, request, create_access_token
 import os
+
+from flask import jsonify
+
+from app import jwt_required, get_jwt_identity
+from app.models.user import User, Role
+from . import auth
+from .. import db, request, create_access_token
 
 
 @auth.route('/register', methods=['POST'])
@@ -39,7 +41,20 @@ def register():
                 user.add_role('User')
             db.session.add(user)
             db.session.commit()
-            return jsonify(message=f'User {email} created successfully'), 201
+            # todo move this login logic to the User class
+            role_id = user.role_id
+            role = Role.query.filter_by(id=role_id).first()
+            access_token = create_access_token(identity=user.id)
+            payload = {
+                'userId': user.id,
+                'user': user.user_id,
+                'role': role.name,
+                'access_token': access_token,
+                'message': 'Login Successful'
+            }
+
+            return jsonify(payload), 201
+            # return jsonify(message=f'User {email} created successfully'), 201
         else:
             return jsonify(message='Passwords don\'t match or not at least 8 characters long'), 409
 
@@ -60,6 +75,7 @@ def login():
         user = User.query.filter_by(user_id=email).first()
         verified_password = user.verify_password(password)
         if verified_password:
+            # todo move this login logic to the User class
             role_id = user.role_id
             role = Role.query.filter_by(id=role_id).first()
             access_token = create_access_token(identity=user.id)

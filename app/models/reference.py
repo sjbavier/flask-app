@@ -37,12 +37,15 @@ class ReferenceStructure(db.Model):
         """
 
         d = {'name': os.path.basename(path), 'path': path}
-        if os.path.isdir(path):
+        if os.path.basename(path)[0] == '.':
+            d['type'] = 'hidden'
+        elif os.path.isdir(path):
             d['type'] = 'directory'
             d['children'] = [ReferenceStructure.create_directory_structure(os.path.join(path, x)) for x in
                              os.listdir(path)]
         else:
             d['type'] = 'file'
+            
         return d
 
     def add_reference_structure(self):

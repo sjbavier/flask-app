@@ -52,7 +52,7 @@ def db_reference_seed():
     db.session.commit()
 
     Reference.create_markdown_entries(ref_path)
-    
+
 
 @app.cli.command('db_seed')
 def db_seed():
@@ -85,3 +85,10 @@ def db_seed():
     Role.insert_roles()
     print('inserted roles')
     print('database_seeded')
+
+
+@app.cli.command('db_seed_all')
+def db_seed_all():
+    db_reference_seed()
+    db_seed()
+

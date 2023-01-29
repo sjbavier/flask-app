@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="sersky.db">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.43">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.45">
     <root id="1">
       <ServerVersion>3.38.0</ServerVersion>
     </root>
@@ -1325,7 +1325,7 @@
     </table>
     <table id="490" parent="166" name="users"/>
     <column id="491" parent="482" name="version_num">
-      <DataType>VARCHAR(32)|0s</DataType>
+      <DasType>VARCHAR(32)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -1340,12 +1340,12 @@
       <UnderlyingIndexName>sqlite_autoindex_alembic_version_1</UnderlyingIndexName>
     </key>
     <column id="494" parent="483" name="category_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="495" parent="483" name="bookmark_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
@@ -1374,17 +1374,17 @@ bookmark_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_bookmark_category_1</UnderlyingIndexName>
     </key>
     <column id="500" parent="484" name="bookmark_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="501" parent="484" name="title">
-      <DataType>VARCHAR(128)|0s</DataType>
+      <DasType>VARCHAR(128)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="502" parent="484" name="link">
-      <DataType>VARCHAR(128)|0s</DataType>
+      <DasType>VARCHAR(128)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
@@ -1402,12 +1402,12 @@ bookmark_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_bookmarks_1</UnderlyingIndexName>
     </key>
     <column id="506" parent="485" name="category_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="507" parent="485" name="name">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <Position>2</Position>
     </column>
     <key id="508" parent="485">
@@ -1415,21 +1415,21 @@ bookmark_id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="509" parent="486" name="reference_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="510" parent="486" name="path">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="511" parent="486" name="content">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <Position>3</Position>
     </column>
     <column id="512" parent="486" name="hash">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <Position>4</Position>
     </column>
     <key id="513" parent="486">
@@ -1437,22 +1437,22 @@ bookmark_id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="514" parent="487" name="reference_structure_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="515" parent="487" name="hash">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="516" parent="487" name="path">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="517" parent="487" name="structure">
-      <DataType>VARCHAR|0s</DataType>
+      <DasType>VARCHAR|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
@@ -1461,21 +1461,21 @@ bookmark_id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="519" parent="488" name="id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="520" parent="488" name="name">
-      <DataType>VARCHAR(64)|0s</DataType>
+      <DasType>VARCHAR(64)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="521" parent="488" name="default">
-      <DataType>BOOLEAN|0s</DataType>
+      <DasType>BOOLEAN|0s</DasType>
       <Position>3</Position>
     </column>
     <column id="522" parent="488" name="permissions">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <Position>4</Position>
     </column>
     <index id="523" parent="488" name="sqlite_autoindex_roles_1">
@@ -1495,42 +1495,42 @@ bookmark_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_roles_1</UnderlyingIndexName>
     </key>
     <column id="527" parent="489" name="type">
-      <DataType>TEXT|0s</DataType>
+      <DasType>TEXT|0s</DasType>
       <Position>1</Position>
     </column>
     <column id="528" parent="489" name="name">
-      <DataType>TEXT|0s</DataType>
+      <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
     <column id="529" parent="489" name="tbl_name">
-      <DataType>TEXT|0s</DataType>
+      <DasType>TEXT|0s</DasType>
       <Position>3</Position>
     </column>
     <column id="530" parent="489" name="rootpage">
-      <DataType>INT|0s</DataType>
+      <DasType>INT|0s</DasType>
       <Position>4</Position>
     </column>
     <column id="531" parent="489" name="sql">
-      <DataType>TEXT|0s</DataType>
+      <DasType>TEXT|0s</DasType>
       <Position>5</Position>
     </column>
     <column id="532" parent="490" name="id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="533" parent="490" name="user_id">
-      <DataType>VARCHAR(64)|0s</DataType>
+      <DasType>VARCHAR(64)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="534" parent="490" name="user_password">
-      <DataType>VARCHAR(128)|0s</DataType>
+      <DasType>VARCHAR(128)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="535" parent="490" name="role_id">
-      <DataType>INTEGER|0s</DataType>
+      <DasType>INTEGER|0s</DasType>
       <Position>4</Position>
     </column>
     <foreign-key id="536" parent="490">

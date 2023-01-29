@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="00a1c0b6-08b1-43eb-b032-4832663abf0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.prod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24aabfe4-311f-48ed-9886-c28397a77814.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/24aabfe4-311f-48ed-9886-c28397a77814.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24aabfe4-311f-48ed-9886-c28397a77814/storage_v2/_src_/database/webmane.nwf3SA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/24aabfe4-311f-48ed-9886-c28397a77814/storage_v2/_src_/database/webmane.nwf3SA/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/558d64b7-3b6c-4704-8b83-690a7f3cd43d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/bookmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/bookmark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Reference" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reference" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/auth/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/authentication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/reference.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/reference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sersky.py" beforeDir="false" afterPath="$PROJECT_DIR$/sersky.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,9 +83,12 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/b4v1n4t0r/docker/cra-docker/flask-app/server&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
@@ -110,7 +117,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="flask" />
-      <option name="PARAMETERS" value="db_seed" />
+      <option name="PARAMETERS" value="db_seed_all" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="true" />
@@ -131,6 +138,7 @@
         <env name="SERVER_ADMIN" value="admin@admin.com" />
       </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="SDK_NAME" value="Python 3.10 (server)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/bin" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -288,7 +296,12 @@
       <workItem from="1671331958946" duration="10762000" />
       <workItem from="1671985052724" duration="24646000" />
       <workItem from="1672620969003" duration="107000" />
-      <workItem from="1672621126815" duration="11591000" />
+      <workItem from="1672621126815" duration="16837000" />
+      <workItem from="1673106452574" duration="618000" />
+      <workItem from="1673107133209" duration="53000" />
+      <workItem from="1673107204167" duration="149000" />
+      <workItem from="1673107369405" duration="9700000" />
+      <workItem from="1674413259967" duration="10345000" />
     </task>
     <servers />
   </component>
@@ -321,7 +334,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/server$flask_seed.coverage" NAME="flask_seed Coverage Results" MODIFIED="1625511506485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/server$server.coverage" NAME="server Coverage Results" MODIFIED="1672625074921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
+    <SUITE FILE_PATH="coverage/server$server.coverage" NAME="server Coverage Results" MODIFIED="1675010519943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
+    <SUITE FILE_PATH="coverage/server$flask_seed.coverage" NAME="flask_seed Coverage Results" MODIFIED="1673208041451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -24,7 +24,6 @@ invalid.
 
 500 Internal Server Error An unexpected error occurred while processing the request.
 
-
 ## Build
 
 - set venv
@@ -45,7 +44,7 @@ Make sure you have these installed
 apt install python3-venv
 ```
 
-Create the virtual environment 
+Create the virtual environment
 
 ```sh
 python3 -m venv <venv-directory>
@@ -88,7 +87,6 @@ To use the development server the environment variable FLASK_APP needs the path 
 
 export FLASK_APP=sersky.py
 export FLASK_DEBUG=1
-export FLASK_ENV=development
 export FLASK_CONFIG=development
 export SERVER_ADMIN=admin@email.com
 ```
@@ -103,7 +101,7 @@ Can also be invoked within the application
 
 ```py
 if __name__ = '__main__':
-    <flask_instance>.run()
+    < flask_instance >.run()
 ```
 
 ### Debug Mode
@@ -135,8 +133,10 @@ flask db migrate
 flask db migrate -m "changes made: ..."
 ```
 
-Once you've reviewed and accepted the migration script, apply it to the database (for a first migration, equivalent to db.create_all())
-**note: the command will fail if the tables already exist and is the first time running the command. Another option would be to run flask db stamp and mark the existing database as upgraded**:
+Once you've reviewed and accepted the migration script, apply it to the database (for a first migration, equivalent to
+db.create_all())
+**note: the command will fail if the tables already exist and is the first time running the command. Another option
+would be to run flask db stamp and mark the existing database as upgraded**:
 
 ```sh
 flask db upgrade
